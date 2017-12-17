@@ -21,14 +21,6 @@ public abstract class ParentGOL {
         initialState = getInitialState(inputLines);
     }
 
-    protected List<String> calculate(String inputFile) throws IOException {
-        initialize(inputFile);
-        byte[][] resultingState = calculate(initialState, T, N);
-        return resultToListOfStrings(resultingState);
-    }
-
-    protected abstract byte[][] calculate(byte[][] start, int T, int N);
-
     protected byte[][] getInitialState(List<String> inputLines) {
         byte[][] initialState = new byte[N][N];
         for (int row = 1; row <= N; row++) {
@@ -38,6 +30,27 @@ public abstract class ParentGOL {
             }
         }
         return initialState;
+    }
+
+    protected List<String> calculate(String inputFile) throws IOException {
+        initialize(inputFile);
+        byte[][] resultingState = calculate(initialState, T, N);
+        return resultToListOfStrings(resultingState);
+    }
+
+    protected abstract byte[][] calculate(byte[][] start, int T, int N);
+
+    protected byte handleCell(byte[][] first, int i, int j) {
+        int right = (j + 1) % N;
+        int left = (j + N - 1) % N;
+
+        int top = (i + N - 1) % N;
+        int down = (i + 1) % N;
+
+        int aliveCells = first[top][left] + first[top][j] + first[top][right] +
+                first[i][left] + first[i][right] +
+                first[down][left] + first[down][j] + first[down][right];
+        return ((aliveCells == 3) || ((aliveCells == 2) && (first[i][j] == 1))) ? (byte) 1 : (byte) 0;
     }
 
     protected List<String> resultToListOfStrings(byte[][] resultingState) {
