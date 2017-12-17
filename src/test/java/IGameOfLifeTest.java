@@ -18,7 +18,8 @@ public class IGameOfLifeTest {
 
     @Test
     public void testGame() throws Exception {
-        testOneGame("resources/input100.txt", "resources/output100.txt");
+//        testOneGame("resources/input100.txt", "resources/output100.txt");
+        testOneGame("resources/input.txt", "resources/output.txt");
     }
 
     private void testOneGame(String inputFile, String expectedOutputFile) throws IOException {

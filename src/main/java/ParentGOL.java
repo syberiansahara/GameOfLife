@@ -15,12 +15,17 @@ public class ParentGOL {
         List<String> inputLines = Files.readAllLines(Paths.get(inputFile));
         N = Integer.valueOf(inputLines.get(0).split(" ")[0]);
         T = Integer.valueOf(inputLines.get(0).split(" ")[1]);
+        initialState = getInitialState(inputLines);
+    }
 
-        for (int row = 1; row <= N; row ++) {
-            char[] line = inputLines.get(row).toCharArray();
-            for (int column = 0; column < N; column ++) {
-                initialState[row][column] = (byte) line[column];
+    protected byte[][] getInitialState(List<String> inputLines) {
+        byte[][] initialState = new byte[N][N];
+        for (int row = 1; row <= N; row++) {
+            String[] line = inputLines.get(row).split("");
+            for (int column = 0; column < N; column++) {
+                initialState[row - 1][column] = Byte.valueOf(line[column]);
             }
         }
+        return initialState;
     }
 }
