@@ -15,31 +15,34 @@ public class GameOfLifeMulti extends ParentGOL implements IGameOfLife {
 
     protected byte[][] calculate(byte[][] start, int T, int N) throws InterruptedException {
 
-        AtomicInteger[] monitors = new AtomicInteger[T];
-
-        RowHandler[] rowHandlers = new RowHandler[N];
-        for (int n = 0; n < N; n++) {
-            rowHandlers[n] = new RowHandler(n, monitors);
-        }
-
-        byte[][] tmp;
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 first[i][j] = start[i][j];
             }
         }
 
+        AtomicInteger[] monitors = new AtomicInteger[T];
+
+        for (int n = 0; n < N; n++) {
+            RowHandler[] rowHandlers = new RowHandler[N];
+            rowHandlers[n] = new RowHandler(n, monitors);
+        }
+
+        byte[][] tmp;
+
         synchronized (monitors[0]) {
             monitors[0].notifyAll();
-            monitors[0].wait();
         }
+
         for (int t = 0; t < T; t++) {
+            synchronized (monitors[t]) {
+                monitors[t].wait();
+            }
             tmp = first;
             first = second;
             second = tmp;
             synchronized (monitors[t]) {
                 monitors[t].notifyAll();
-                monitors[t].wait();
             }
         }
         return first;
@@ -64,7 +67,7 @@ public class GameOfLifeMulti extends ParentGOL implements IGameOfLife {
                     second[myLineNumber][j] = handleCell(first, myLineNumber, j);
                 }
 
-                if (monitors[t].incrementAndGet() == N) {
+                if (monitors[t].incrementAndGet() == N) { //including the master thread
                     synchronized (monitors[t]) {
                         monitors[t].notify(); //only the master thread
                     }
