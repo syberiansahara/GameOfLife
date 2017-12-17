@@ -13,12 +13,14 @@ public class IGameOfLifeTest {
 
     @Before
     public void before() {
-        IGameOfLife = new GameOfLife();
+        IGameOfLife = new GameOfLifeOneThread();
     }
 
     @Test
     public void testGame() throws Exception {
-//        testOneGame("resources/input100.txt", "resources/output100.txt");
+//        testOneGame("resources/input10000.txt", "resources/output10000.txt");
+//        testOneGame("resources/input1000.txt", "resources/output1000.txt");
+        testOneGame("resources/input100.txt", "resources/output100.txt");
         testOneGame("resources/input.txt", "resources/output.txt");
     }
 

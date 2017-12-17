@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,5 +28,19 @@ public class ParentGOL {
             }
         }
         return initialState;
+    }
+
+    protected List<String> resultToListOfStrings(byte[][] bytes) {
+        List<String> result = new ArrayList<>();
+        String line;
+        for (int row = 0; row < N; row ++) {
+            line = "";
+            for (int column = 0; column < N; column++) {
+                line += bytes[row][column];
+            }
+            result.add(line);
+        }
+
+        return result;
     }
 }
