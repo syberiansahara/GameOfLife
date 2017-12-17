@@ -4,13 +4,10 @@ import java.util.List;
 public class GameOfLife extends ParentGOL implements IGameOfLife {
     @Override
     public List<String> play(String inputFile) throws IOException {
-        setInitialState(inputFile);
-        byte[][] result = calculate(initialState, T, N);
-        return resultToListOfStrings(result);
+        return calculate(inputFile);
     }
 
-    private byte[][] calculate(byte[][] start, int T, int N) {
+    protected byte[][] calculate(byte[][] start, int T, int N) {
         return null;
     }
-
 }
