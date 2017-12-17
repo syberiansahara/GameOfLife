@@ -1,3 +1,4 @@
+import gol.GameOfLifeSimple;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,11 +10,11 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class IGameOfLifeTest {
-    private IGameOfLife IGameOfLife;
+    private gol.IGameOfLife IGameOfLife;
 
     @Before
     public void before() {
-        IGameOfLife = new GameOfLifeOneThread();
+        IGameOfLife = new GameOfLifeSimple();
     }
 
     @Test
