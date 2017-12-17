@@ -1,4 +1,4 @@
-import gol.GameOfLifeSimple;
+import gol.GameOfLifeMulti;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,14 +14,15 @@ public class IGameOfLifeTest {
 
     @Before
     public void before() {
-        IGameOfLife = new GameOfLifeSimple();
+        IGameOfLife = new GameOfLifeMulti();
+//        IGameOfLife = new GameOfLifeSimple();
     }
 
     @Test
     public void testGame() throws Exception {
 //        testOneGame("resources/input10000.txt", "resources/output10000.txt");
 //        testOneGame("resources/input1000.txt", "resources/output1000.txt");
-        testOneGame("resources/input100.txt", "resources/output100.txt");
+//        testOneGame("resources/input100.txt", "resources/output100.txt");
         testOneGame("resources/input.txt", "resources/output.txt");
     }
 

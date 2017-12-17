@@ -32,13 +32,13 @@ public abstract class ParentGOL {
         return initialState;
     }
 
-    protected List<String> calculate(String inputFile) throws IOException {
+    protected List<String> calculate(String inputFile) throws IOException{
         initialize(inputFile);
         byte[][] resultingState = calculate(initialState, T, N);
         return resultToListOfStrings(resultingState);
     }
 
-    protected abstract byte[][] calculate(byte[][] start, int T, int N) throws InterruptedException;
+    protected abstract byte[][] calculate(byte[][] start, int T, int N);
 
     protected byte handleCell(byte[][] first, int i, int j) {
         int right = (j + 1) % N;

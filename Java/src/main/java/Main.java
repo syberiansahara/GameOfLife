@@ -13,8 +13,9 @@ public class Main {
     private static final IGameOfLife simple = new GameOfLifeSimple();
     private static final IGameOfLife multi = new GameOfLifeMulti();
     public static final int EXPERIMENT_COUNT = 3;
-    public static String[] inputFiles = {"resources/input.txt"
-//            , "resources/input100.txt"
+    public static String[] inputFiles = {
+//            "resources/input.txt"
+            "resources/input1000.txt"
     };
 
     public static void main(String[] args) throws IOException {
@@ -35,16 +36,16 @@ public class Main {
 
     public static Result experiment(String inputFile) throws IOException {
         double startTime;
-        startTime = getTimeInSeconds();
+        startTime = getElapsedTimeInNanoseconds();
         simple.play(inputFile);
-        double simpleTime = getTimeInSeconds() - startTime;
-        startTime = getTimeInSeconds();
+        double simpleTime = getElapsedTimeInNanoseconds() - startTime;
+        startTime = getElapsedTimeInNanoseconds();
         multi.play(inputFile);
-        double multiTime = getTimeInSeconds() - startTime;
+        double multiTime = getElapsedTimeInNanoseconds() - startTime;
         return new Result(simpleTime, multiTime);
     }
 
-    public static double getTimeInSeconds() {
+    public static double getElapsedTimeInNanoseconds() {
         return System.nanoTime() - initialTime;
     }
 }
