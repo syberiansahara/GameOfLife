@@ -38,7 +38,7 @@ public abstract class ParentGOL {
         return resultToListOfStrings(resultingState);
     }
 
-    protected abstract byte[][] calculate(byte[][] start, int T, int N);
+    protected abstract byte[][] calculate(byte[][] start, int T, int N) throws InterruptedException;
 
     protected byte handleCell(byte[][] first, int i, int j) {
         int right = (j + 1) % N;
