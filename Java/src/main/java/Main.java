@@ -12,10 +12,10 @@ public class Main {
     private final static double initialTime = System.nanoTime();
     private static final IGameOfLife simple = new GameOfLifeSimple();
     private static final IGameOfLife multi = new GameOfLifeMulti();
-    public static final int EXPERIMENT_COUNT = 3;
+    public static final int EXPERIMENT_COUNT = 4;
     public static String[] inputFiles = {
 //            "resources/input.txt"
-            "resources/input1000.txt"
+            "resources/input100.txt"
     };
 
     public static void main(String[] args) throws IOException {
